@@ -10,29 +10,28 @@
 angular.module('disclaimerCookieApp')
     .service('DisclaimerCookie', ['$cookies', function ($cookies) {
         return {
-            _delay: '2',
+            _delay: 2,
             _cookieName: '_disclaimer_cookie',
-            _template: '<div class="alert alert-success" role="alert">Disclaimer Notice<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>',
+            _template: '<div id="DisclaimerInstance" class="alert alert-success" role="alert">Disclaimer Notice<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>',
             $setCookie: function () {
                 var now = new Date(),
-                    exp = new Date(now.getFullYear(), now.getMonth(), now.getDate()+this._delay);
+                    exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + this._delay);
                 $cookies.put(this._cookieName, exp);
             },
             $showDisclaimer: function() {
-                var obj = angular.element('body').prepend(this._template);
-                obj.bind('click', this.$setCookie());
+                angular.element('body').append(this._template);
+                angular.element('#DisclaimerInstance').css({
+                    position: 'fixed',
+                    top: '0',
+                    width: '100%'
+                }).bind('click', this.$setCookie());
             },
             initialize: function () {
                 var date = new Date(),
                     now = new Date(date.getFullYear(), date.getMonth(), date.getDate());
                 var cookie = $cookies.get(this._cookieName);
-
-                if (cookie == undefined) {
+                if ((cookie == undefined) || (new Date(now) > new Date(cookie))) {
                     this.$showDisclaimer();
-                } else {
-                    if (new Date(now) > new Date(cookie)){
-                        this.$showDisclaimer();
-                    }
                 }
             }
         }

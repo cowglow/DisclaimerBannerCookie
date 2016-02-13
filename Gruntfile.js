@@ -393,9 +393,9 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
-        'copy:styles',
-        'imagemin',
-        'svgmin'
+        'copy:styles'
+        //'imagemin',
+        //'svgmin'
       ]
     },
 
@@ -424,11 +424,6 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
-  });
-
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
@@ -443,7 +438,6 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
     'ngtemplates',
     'concat',
     'ngAnnotate',
@@ -451,9 +445,9 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'filerev',
-    'usemin',
-    'htmlmin'
+    //'filerev',
+    'usemin'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('default', [
