@@ -12,7 +12,7 @@ angular.module('disclaimerCookieApp')
         return {
             _delay: 2,
             _cookieName: '_disclaimer_cookie',
-            _template: '<div id="DisclaimerInstance" class="alert alert-success" role="alert">Disclaimer Notice<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>',
+            _template: '<div id="DisclaimerInstance" class="alert alert-success text-center" role="alert">Disclaimer Notice<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>',
             $setCookie: function () {
                 var now = new Date(),
                     exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + this._delay);
@@ -21,10 +21,10 @@ angular.module('disclaimerCookieApp')
             $showDisclaimer: function() {
                 angular.element('body').append(this._template);
                 angular.element('#DisclaimerInstance').css({
-                    position: 'fixed',
-                    top: '0',
-                    width: '100%'
-                }).bind('click', this.$setCookie());
+                    position:'absolute',
+                    height:'52'
+                }).addClass('modal modal-dialog modal-lg center-block')
+                    .bind('click', this.$setCookie());
             },
             initialize: function () {
                 var date = new Date(),
