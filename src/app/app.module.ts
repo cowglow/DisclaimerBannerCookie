@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { DisclaimerBannerDirective } from './disclaimer-banner.directive';
+import { DisclaimerBannerComponent } from './disclaimer-banner/disclaimer-banner.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DisclaimerBannerDirective
+    DisclaimerBannerComponent
   ],
   imports: [
     BrowserModule
