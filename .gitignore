@@ -1,5 +1,25 @@
-/node_modules
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
 /dist
-/.tmp
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+
+# misc
 /.sass-cache
-/bower_components
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
