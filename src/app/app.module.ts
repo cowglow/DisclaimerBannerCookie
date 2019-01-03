@@ -1,19 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { DisclaimerBannerComponent } from './disclaimer-banner/disclaimer-banner.component';
+import {CookieService} from 'ngx-cookie-service';
+
+import {AppComponent} from './app.component';
+import {DisclaimerBannerComponent} from './disclaimer-banner/disclaimer-banner.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DisclaimerBannerComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, DisclaimerBannerComponent],
+    imports: [BrowserModule],
+    providers: [CookieService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
