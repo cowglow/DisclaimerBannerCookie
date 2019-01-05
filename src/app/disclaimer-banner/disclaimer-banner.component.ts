@@ -4,7 +4,7 @@ import {CookieService} from 'ngx-cookie-service';
 @Component({
     selector: 'app-disclaimer-banner',
     template: `
-        <div id="DisclaimerInstance" class="{{classes}}" role="alert">
+        <div id="DisclaimerInstance" class="{{classes}}" role="alert" style="position:fixed; height:52px;">
             {{message}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismiss()">
                 <span aria-hidden="true">&times;</span>
@@ -13,15 +13,8 @@ import {CookieService} from 'ngx-cookie-service';
     `
 })
 export class DisclaimerBannerComponent implements OnInit {
-    _cookieName = '_disclaimer_cookie';
-    _cookieValue = undefined;
-
-    _bannerClasses = 'modal modal-dialog modal-lg center-block';
-
-    // @HostBinding('styles') string = {
-    //     position: 'absolute',
-    //     height: '52'
-    // };
+    _cookieName = 'disclaimer_cookie'; // cookie name
+    _delay = 2; // two days
 
     @Input() message: 'string';
     @Input() classes: 'string';
@@ -34,17 +27,19 @@ export class DisclaimerBannerComponent implements OnInit {
         const date = new Date();
         const now = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-        this._cookieValue = (this.cookieService.get(this._cookieName)) ? this.cookieService.get(this._cookieName) : undefined;
-        if ((this._cookieValue === undefined) || (new Date(now) > new Date(this._cookieValue))) {
-            this.showDisclaimer();
+        if (this.cookieService.check(this._cookieName) || (new Date(now) > new Date(this.cookieService.get(this._cookieName)))) {
+            this.hideBanner();
         }
     }
 
-    showDisclaimer() {
-        console.log('show it!');
+    dismiss() {
+        const now = new Date();
+        const exp = new Date(now.getFullYear(), now.getMonth(), now.getDate() + this._delay);
+        this.cookieService.set('disclaimer_cookie', exp.toString(), exp);
+        this.hideBanner();
     }
 
-    dismiss() {
-        console.log('working on it! ', this._cookieValue);
+    hideBanner() {
+        document.querySelector('#DisclaimerInstance').setAttribute('style', 'display:none;');
     }
 }
