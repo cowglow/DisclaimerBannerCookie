@@ -12,7 +12,7 @@ version 0.12.1. But since then, Angular has evolved and Bower has been replaced 
 
 ### About me
 
-I'm a mercenary coder at [tollwerk GmbH](https://github.com/tollwerk)
+I'm American living and working in Germany.
 
 * [@cowglow](https://twitter.com/cowglow) - Say 'hi' on twitter!
 * [YouTube](https://youtube.com/c/cowglow) - I'm a filmmaker
